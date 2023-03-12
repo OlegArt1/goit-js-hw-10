@@ -1,0 +1,18 @@
+
+.country-title
+{
+    margin-left: 10px;
+}
+.country-label
+{
+    padding-right: 5px;
+}
+.country-item
+{
+    list-style-type: none;
+}
+.country-article
+{
+    display: flex;
+    align-items: center;
+}
