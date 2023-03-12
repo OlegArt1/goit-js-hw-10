@@ -8,9 +8,9 @@ const countryList = document.querySelector(".country-list");
 
 const countryInfo = document.querySelector(".countrt-info");
 
-searchBox.style.marginLeft = '20px';
+searchBox.style.marginLeft = '40px';
 
-searchBox.style.marginTop = '20px';
+searchBox.style.marginTop = '30px';
 
 const DEBOUNCE_DELAY = 300;
 
@@ -19,7 +19,7 @@ function renderCountryIndexList(countries, index)
     const markup = countries.filter((country) => country.name.common[0] === index).map((country) =>
     {
         return "<br/>" +
-               "<li class='country-item'>" +
+               "<li class='country-item-list'>" +
                    "<div class='country-article'>" +
                        `<a class='country-link' href='${country.flags.png}'>` +
                            `<img class='country-image' src='${country.flags.svg}' width='50' height='30' title='{country.name.official}' alt='{country.name.official}'/>` +
@@ -41,38 +41,38 @@ function renderCountryList(countries, text)
         return "<br/>" +
                "<li class='country-item'>" +
                    "<div class='country-article'>" +                       
-                       "<b class='country-label'>Flag:</b>" +
+                       "<b class='country-label'>Flag:&nbsp;&nbsp;</b>" +
                        `<a class='country-link' href='${country.flags.png}'>` +
                            `<img class='country-image' src='${country.flags.svg}' width='200' height='100' title='{country.name.official}' alt='{country.name.official}'/>` +
                        "</a>" +
                    "</div>" +
                    "<br/>" +
                    "<p>" +
-                       "<b class='country-label'>Name country:</b>" +
+                       "<b class='country-label'>&nbsp;&nbsp;&nbsp;&nbsp;Name country:</b>" +
                        `<i class='country-name'>${country.name.official};</i>` +
                    "</p>" +
                    "<p>" +
-                       "<b class='country-label'>Area:</b>" +
+                       "<b class='country-label'>&nbsp;&nbsp;&nbsp;&nbsp;Area:</b>" +
                        `<i class='country-area'>${country.area} m<sup>2</sup>;</i>` +
                    "</p>" +
                    "<p>" +
-                       "<b class='country-label'>Continent:</b>" +
+                       "<b class='country-label'>&nbsp;&nbsp;&nbsp;&nbsp;Continent:</b>" +
                        `<i class='country-region'>${country.continents};</i>` +
                    "</p>" +
                    "<p>" +
-                       "<b class='country-label'>Subcontinent:</b>" +
+                       "<b class='country-label'>&nbsp;&nbsp;&nbsp;&nbsp;Subcontinent:</b>" +
                        `<i class='country-subregion'>${country.subregion};</i>` +
                    "</p>" +
                    "<p>" +
-                       "<b class='country-label'>Population:</b>" +
+                       "<b class='country-label'>&nbsp;&nbsp;&nbsp;&nbsp;Population:</b>" +
                        `<i class='country-population'>${country.population} people;</i>` +
                    "</p>" +
                    "<p>" +
-                       "<b class='country-label'>Capital:</b>" +
+                       "<b class='country-label'>&nbsp;&nbsp;&nbsp;&nbsp;Capital:</b>" +
                        `<i class='country-capital'>${country.capital};</i>` +
                    "</p>" +
                    "<p>" +
-                       "<b class='country-label'>Languages:</b>" +
+                       "<b class='country-label'>&nbsp;&nbsp;&nbsp;&nbsp;Languages:</b>" +
                        `<i class='country-languages'>${Object.values(country.languages).join(", ")};</i>` +
                    "</p>" +
                    "<br/>" +
@@ -80,7 +80,7 @@ function renderCountryList(countries, text)
             
     }).sort().join("");
     
-    countryList.innerHTML += markup;
+    countryList.innerHTML = markup;
 }
 function clearList()
 {
@@ -88,7 +88,7 @@ function clearList()
 }
 searchBox.addEventListener("input", ()=> 
 {
-    const countryItem = document.querySelector(".country-item");
+    const countryItem = document.querySelector(".country-name");
 
     const target_element = event.currentTarget.value;
     
@@ -98,9 +98,9 @@ searchBox.addEventListener("input", ()=>
     {
         clearList();
 
-        body.setAttribute("onload", Notiflix.Notify.failure('Oops! There is no country!'));
+        body.setAttribute("onload", Notiflix.Notify.failure('Ошибка! Пустая строка!'));
 
-        //Too many maches found please ennter a specific name!
+        //Too many maches found please ennter a specific name! Oops! There is no country!
         console.log("\nOops! There is no country!");
     }
     else
@@ -111,7 +111,7 @@ searchBox.addEventListener("input", ()=>
             {
                 renderCountryIndexList(country, indexElement);
               
-            }, 1000);
+            }, DEBOUNCE_DELAY);
           
             clearList();
       
