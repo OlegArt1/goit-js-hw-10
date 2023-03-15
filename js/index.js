@@ -148,6 +148,8 @@ searchBox.addEventListener("input", ()=>
             }
             else if (target_index_element.length > 10)
             {
+                clearList();
+                
                 body.setAttribute("onload", Notiflix.Notify.warning('Too many maches found! Please enter are more specific name!'));
 
                 console.log("\nToo many maches found! Please enter are more specific name!");
