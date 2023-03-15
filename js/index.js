@@ -150,7 +150,9 @@ searchBox.addEventListener("input", ()=>
             {
                 clearList();
                 
-                body.setAttribute("onload", Notiflix.Notify.warning('Too many maches found! Please enter are more specific name!'));
+                //body.setAttribute("onload", Notiflix.Notify.warning('Too many maches found! Please enter are more specific name!'));
+
+                alert("Too many maches found! Please enter are more specific name!");
 
                 console.log("\nToo many maches found! Please enter are more specific name!");
             }
@@ -158,8 +160,10 @@ searchBox.addEventListener("input", ()=>
             {
                 clearList();
                 
-                body.setAttribute("onload", Notiflix.Notify.failure('Oops, there is no country with that name!'));
+                //body.setAttribute("onload", Notiflix.Notify.failure('Oops, there is no country with that name!'));
                     
+                alert("Oops, there is no country with that name!");
+
                 console.log("\nOops, there is no country with that name!");
             }
             renderCountryIndexList(country, target_element);
