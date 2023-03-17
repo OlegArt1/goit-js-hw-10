@@ -8,6 +8,8 @@ export function fetchUsers(name)
         {
             if (response.status === 404)
             {
+                console.log("\nError status = ", response.status);
+
                 return [];
             }
             throw new Error(response.status);
