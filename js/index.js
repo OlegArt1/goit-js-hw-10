@@ -136,7 +136,7 @@ search.addEventListener("input", ()=>
     
     const index_element = target_element[0];
     
-    fetchUsers().then((country) =>
+    fetchUsers(target_index_element).then((country) =>
     {
         setTimeout(() =>
         {
@@ -171,13 +171,6 @@ search.addEventListener("input", ()=>
                 console.log("\nOops, there is no country with that name!");
             }
             renderCountryIndexList(country, target_element);
-
-            const element = document.querySelector("i.country-name");
-
-            if (element.textContent !== "")
-            {
-                countryList.innerHTML = "";
-            }
             
         }, DEBOUNCE_DELAY);
 
