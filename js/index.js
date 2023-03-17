@@ -145,16 +145,6 @@ search.addEventListener("input", ()=>
                 countryInfo.innerHTML = "";
 
                 renderCountryList(country, index_element.toUpperCase());
-
-                const countriesList = document.querySelectorAll("li.country-item-list");
-
-                for (let i = 0; i <= countriesList.length; i += 1)
-                {
-                    if (i >= 10)
-                    {
-                        countriesList[i].innerHTML = "";
-                    }
-                }
             }
             else if (target_index_element.length > 10)
             {
