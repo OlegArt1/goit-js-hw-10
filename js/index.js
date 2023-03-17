@@ -140,7 +140,7 @@ search.addEventListener("input", ()=>
     {
         setTimeout(() =>
         {
-            if (target_index_element.length >= 1 && target_index_element.length <= 10)
+            if (target_index_element.length >= 2 && target_index_element.length <= 10)
             {
                 countryInfo.innerHTML = "";
 
