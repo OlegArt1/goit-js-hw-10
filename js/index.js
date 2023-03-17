@@ -4,19 +4,19 @@ import { fetchUsers } from "./fetchUsers.js";
 
 const body = document.querySelector("body");
 
-const searchBox = document.querySelector("#search-box");
+const search = document.querySelector("#search-box");
 
 const countryList = document.querySelector(".country-list");
 
 const countryInfo = document.querySelector(".country-info");
 
-const countryItem = document.querySelector(".country-item-list");
-
-searchBox.style.marginLeft = '40px';
-
-searchBox.style.marginTop = '30px';
-
 const DEBOUNCE_DELAY = 300;
+
+let count = 0;
+
+search.style.marginLeft = '40px';
+
+search.style.marginTop = '30px';
 
 function renderCountryList(countries, index)
 {
@@ -128,9 +128,9 @@ function clearList()
 
     countryInfo.innerHTML = "";
 }
-searchBox.addEventListener("input", ()=> 
+search.addEventListener("input", ()=> 
 {
-    const target_index_element = searchBox.value.trim();
+    const target_index_element = search.value.trim();
     
     const target_element = event.currentTarget.value;
     
@@ -144,15 +144,21 @@ searchBox.addEventListener("input", ()=>
             {
                 countryInfo.innerHTML = "";
 
-                renderCountryList(country, index_element);
+                renderCountryList(country, index_element.toUpperCase());
+
+                const countriesList = document.querySelectorAll("li.country-item-list");
+
+                for (let i = 0; i <= countriesList.length; i += 1)
+                {
+                    if (i >= 10)
+                    {
+                        countriesList[i].innerHTML = "";
+                    }
+                }
             }
             else if (target_index_element.length > 10)
             {
-                clearList();
-                
-                body.setAttribute("onload", Notiflix.Notify.warning('Too many maches found! Please enter are more specific name!'));
-
-                alert("Too many maches found! Please enter are more specific name!");
+                body.setAttribute("onload", Notiflix.Notify.failure('Too many maches found! Please enter are more specific name!'));
 
                 console.log("\nToo many maches found! Please enter are more specific name!");
             }
@@ -162,12 +168,17 @@ searchBox.addEventListener("input", ()=>
                 
                 body.setAttribute("onload", Notiflix.Notify.failure('Oops, there is no country with that name!'));
                     
-                alert("Oops, there is no country with that name!");
-
                 console.log("\nOops, there is no country with that name!");
             }
             renderCountryIndexList(country, target_element);
-        
+
+            const element = document.querySelector("i.country-name");
+
+            if (element.textContent !== "")
+            {
+                countryList.innerHTML = "";
+            }
+            
         }, DEBOUNCE_DELAY);
 
     }).catch((error) =>
